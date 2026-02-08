@@ -8,6 +8,25 @@ This project implements an image classification pipeline for satellite imagery u
 
 **Land Use Classes**: AnnualCrop, Forest, HerbaceousVegetation, Highway, Industrial, Pasture, PermanentCrop, Residential, River, SeaLake
 
+## Performance Metrics
+
+| Metric | Score |
+|--------|-------|
+| **Test Accuracy** | **97.08%** |
+| **Validation Accuracy** | **97.10%** |
+| **Training Accuracy** | **97.83%** |
+| **Training Time** | ~12 min (10 epochs, GPU) |
+
+### Training Progression
+
+| Epoch | Train Loss | Train Acc | Val Loss | Val Acc |
+|-------|------------|-----------|----------|---------|
+| 1 | 0.4753 | 84.55% | 0.1832 | 93.50% |
+| 5 | 0.1526 | 94.87% | 0.1354 | 95.20% |
+| 10 | 0.0623 | 97.83% | 0.0896 | **97.10%** |
+
+The model demonstrates strong convergence with minimal overfitting (train-val gap < 1%), indicating effective regularization through transfer learning.
+
 ## Architecture
 
 **Model**: ResNet50 (ImageNet pre-trained) + Custom FC Head  
@@ -59,25 +78,6 @@ Device: CUDA (if available)
 - Froze all convolutional layers (feature extractor mode)
 - Trained only the final classification head
 - Applied cosine annealing for learning rate decay
-
-## Performance Metrics
-
-| Metric | Score |
-|--------|-------|
-| **Test Accuracy** | **97.08%** |
-| **Validation Accuracy** | **97.10%** |
-| **Training Accuracy** | **97.83%** |
-| **Training Time** | ~12 min (10 epochs, GPU) |
-
-### Training Progression
-
-| Epoch | Train Loss | Train Acc | Val Loss | Val Acc |
-|-------|------------|-----------|----------|---------|
-| 1 | 0.4753 | 84.55% | 0.1832 | 93.50% |
-| 5 | 0.1526 | 94.87% | 0.1354 | 95.20% |
-| 10 | 0.0623 | 97.83% | 0.0896 | **97.10%** |
-
-The model demonstrates strong convergence with minimal overfitting (train-val gap < 1%), indicating effective regularization through transfer learning.
 
 ## Usage
 
